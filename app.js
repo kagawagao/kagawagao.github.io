@@ -9,7 +9,7 @@ var shape = ['triangle', 'rectangle', 'circle']
 /**
  * number of shape
  */
-var circleNum = window.innerWidth / 12
+var circleNum = window.innerWidth / 10
 
 /**
  * draw shape
@@ -62,6 +62,28 @@ function drawTrian (ctx) {
   ctx.lineTo(startX + 25, startY - 25)
   ctx.fill();
 }
+function throttle(fn, threshhold, scope) {
+  threshhold || (threshhold = 250)
+  var last,
+      deferTimer
+  return function () {
+    var context = scope || this
+
+    var now = +new Date,
+        args = arguments
+    if (last && now < last + threshhold) {
+      // hold on to it
+      clearTimeout(deferTimer)
+      deferTimer = setTimeout(function () {
+        last = now
+        fn.apply(context, args)
+      }, threshhold)
+    } else {
+      last = now
+      fn.apply(context, args)
+    }
+  }
+}
 window.onload = draw
 
-window.addEventListener('resize', draw, false)
+window.addEventListener('resize', throttle(draw, 250), false)
