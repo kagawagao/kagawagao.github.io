@@ -1,7 +1,7 @@
 /**
  * color of shape
  */
-var colors = ['#FF324A', '#31FFA6', '#206EFF', '#FFFF99']
+var colors = ['rgba(255, 50, 74, 0.5)', 'rgba(49, 255, 166, 0.5)', 'rgba(32, 110, 255, 0.5)', 'rgba(255, 255, 153, 0.5)']
 /**
  * shapes
  */
@@ -24,13 +24,15 @@ function draw () {
   setCanvasSize(canvas)
   var ctx = canvas.getContext('2d');
   for (var i = 0; i < circleNum; i++) {
-    if (i % 3 === 0) {
-      drawRect(ctx)
-    } else if (i % 3 === 1) {
-      drawCircle(ctx)
-    } else {
-      drawTrian(ctx)
-    }
+    // if (i % 3 === 0) {
+    //   drawRect(ctx)
+    // } else if (i % 3 === 1) {
+    //   drawCircle(ctx)
+    // } else {
+    //   drawTrian(ctx)
+    // }
+
+    drawCircle(ctx)
   }
 }
 
