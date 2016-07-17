@@ -1,7 +1,7 @@
 /**
  * color of shape
  */
-var colors = ['rgba(255, 50, 74, 0.5)', 'rgba(49, 255, 166, 0.5)', 'rgba(32, 110, 255, 0.5)', 'rgba(255, 255, 153, 0.5)']
+var colors = ['rgba(255, 50, 74, 0.5)', 'rgba(49, 255, 166, 0.5)', 'rgba(32, 110, 255, 0.5)', 'rgba(255, 255, 153, 0.5)', 'rgba(255, 97, 0, .5)']
 /**
  * shapes
  */
@@ -37,7 +37,7 @@ function draw () {
 }
 
 function drawCircle (ctx) {
-  var color = colors[Math.floor(Math.random() * (colors.length - 1))]
+  var color = colors[Math.floor(Math.random() * (colors.length))]
   ctx.beginPath();
   ctx.arc(Math.floor(Math.random() * window.innerWidth - Math.PI), Math.floor(Math.random() * window.innerHeight - Math.PI), 50, 0, Math.PI*2, true)
   ctx.closePath();
@@ -46,13 +46,13 @@ function drawCircle (ctx) {
 }
 
 function drawRect(ctx) {
-  var color = colors[Math.floor(Math.random() * (colors.length - 1))]
+  var color = colors[Math.floor(Math.random() * (colors.length))]
   ctx.fillStyle = color
   ctx.fillRect(Math.floor(Math.random() * window.innerWidth), Math.floor(Math.random() * window.innerHeight), 60, 40)
 }
 
 function drawTrian (ctx) {
-  var color = colors[Math.floor(Math.random() * (colors.length - 1))]
+  var color = colors[Math.floor(Math.random() * (colors.length))]
   var startX = Math.floor(Math.random() * window.innerWidth)
   var startY = Math.floor(Math.random() * window.innerHeight)
   ctx.fillStyle = color
