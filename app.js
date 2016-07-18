@@ -12,8 +12,11 @@ var shape = ['triangle', 'rectangle', 'circle']
 var circleNum = window.innerWidth / 10
 
 /**
- * draw shape
+ * draw
+ * @method draw
+ * @return {[type]} [description]
  */
+
 function draw () {
   var canvas = document.getElementById('canvas')
   canvas.onclick = draw
@@ -23,18 +26,26 @@ function draw () {
   }
   setCanvasSize(canvas)
   var ctx = canvas.getContext('2d');
-  for (var i = 0; i < circleNum; i++) {
-    // if (i % 3 === 0) {
-    //   drawRect(ctx)
-    // } else if (i % 3 === 1) {
-    //   drawCircle(ctx)
-    // } else {
-    //   drawTrian(ctx)
-    // }
+  if (ctx) {
+    for (var i = 0; i < circleNum; i++) {
+      // if (i % 3 === 0) {
+      //   drawRect(ctx)
+      // } else if (i % 3 === 1) {
+      //   drawCircle(ctx)
+      // } else {
+      //   drawTrian(ctx)
+      // }
 
-    drawCircle(ctx)
+      drawCircle(ctx)
+    }
   }
 }
+
+/**
+ * draw circle
+ * @method drawCircle
+ * @param  {Object}   ctx
+ */
 
 function drawCircle (ctx) {
   var color = colors[Math.floor(Math.random() * (colors.length))]
@@ -45,11 +56,23 @@ function drawCircle (ctx) {
   ctx.fill();
 }
 
+/**
+ * draw rectangle
+ * @method drawRect
+ * @param  {Object} ctx
+ */
+
 function drawRect(ctx) {
   var color = colors[Math.floor(Math.random() * (colors.length))]
   ctx.fillStyle = color
   ctx.fillRect(Math.floor(Math.random() * window.innerWidth), Math.floor(Math.random() * window.innerHeight), 60, 40)
 }
+
+/**
+ * draw triangle
+ * @method drawTrian
+ * @param  {Object}  ctx
+ */
 
 function drawTrian (ctx) {
   var color = colors[Math.floor(Math.random() * (colors.length))]
@@ -62,6 +85,16 @@ function drawTrian (ctx) {
   ctx.lineTo(startX + 25, startY - 25)
   ctx.fill();
 }
+
+/**
+ * [throttle description]
+ * @method throttle
+ * @param  {Function} fn         [description]
+ * @param  {[type]}   threshhold [description]
+ * @param  {[type]}   scope      [description]
+ * @return {[type]}              [description]
+ */
+
 function throttle(fn, threshhold, scope) {
   threshhold || (threshhold = 250)
   var last,
