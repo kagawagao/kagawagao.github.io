@@ -2,10 +2,12 @@
  * color of shape
  */
 var colors = ['rgba(255, 50, 74, 0.5)', 'rgba(49, 255, 166, 0.5)', 'rgba(32, 110, 255, 0.5)', 'rgba(255, 255, 153, 0.5)', 'rgba(255, 97, 0, .5)']
+
 /**
  * shapes
  */
 var shape = ['triangle', 'rectangle', 'circle']
+
 /**
  * number of shape
  */
@@ -16,16 +18,11 @@ var circleNum = window.innerWidth / 10
  * @method draw
  * @return {[type]} [description]
  */
-
 function draw () {
   var canvas = document.getElementById('canvas')
-  canvas.onclick = draw
-  var setCanvasSize = function () {
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-  }
-  setCanvasSize(canvas)
-  var ctx = canvas.getContext('2d');
+  var ctx = canvas.getContext('2d')
+  ctx.save()
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
   if (ctx) {
     for (var i = 0; i < circleNum; i++) {
       // if (i % 3 === 0) {
@@ -39,6 +36,10 @@ function draw () {
       drawCircle(ctx)
     }
   }
+
+  ctx.restore()
+
+  // window.requestAnimationFrame(draw)
 }
 
 /**
@@ -46,7 +47,6 @@ function draw () {
  * @method drawCircle
  * @param  {Object}   ctx
  */
-
 function drawCircle (ctx) {
   var color = colors[Math.floor(Math.random() * (colors.length))]
   ctx.beginPath();
@@ -61,7 +61,6 @@ function drawCircle (ctx) {
  * @method drawRect
  * @param  {Object} ctx
  */
-
 function drawRect(ctx) {
   var color = colors[Math.floor(Math.random() * (colors.length))]
   ctx.fillStyle = color
@@ -73,7 +72,6 @@ function drawRect(ctx) {
  * @method drawTrian
  * @param  {Object}  ctx
  */
-
 function drawTrian (ctx) {
   var color = colors[Math.floor(Math.random() * (colors.length))]
   var startX = Math.floor(Math.random() * window.innerWidth)
@@ -94,7 +92,6 @@ function drawTrian (ctx) {
  * @param  {[type]}   scope      [description]
  * @return {[type]}              [description]
  */
-
 function throttle(fn, threshhold, scope) {
   threshhold || (threshhold = 250)
   var last,
@@ -117,6 +114,16 @@ function throttle(fn, threshhold, scope) {
     }
   }
 }
-window.onload = draw
+
+window.onload = function () {
+  var canvas = document.getElementById('canvas')
+  canvas.onclick = draw
+  var setCanvasSize = function () {
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+  }
+  setCanvasSize(canvas)
+  window.requestAnimationFrame(draw)
+}
 
 window.addEventListener('resize', throttle(draw, 250), false)
